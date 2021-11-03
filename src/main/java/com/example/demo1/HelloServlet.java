@@ -1,6 +1,9 @@
 package com.example.demo1;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -13,35 +16,36 @@ public class HelloServlet extends HttpServlet {
         message = "Hello World!";
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String navn = request.getParameter("name");
         String password1 = request.getParameter("pass1");
         String password2 = request.getParameter("pass2");
-
         response.setContentType("text/html");
-
         // Hello
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
+        ServletContext context = request.getServletContext();
 
         if(password1.equals(password2)){
-//            out.println("<html><body>");
-//            out.println("<h1>Dit navn er " + navn + "</h1>");
-//            out.println("</body></html>");
-            HttpSession session = request.getSession();
+            List<Bruger> brugerList = (List<Bruger>) context.getAttribute("brugerListe");
+            if(brugerList == null){
+                brugerList = new ArrayList<>();
+            }
+
+            Bruger bruger = new Bruger(navn, password1);
+            brugerList.add(bruger);
+            context.setAttribute("brugerList", brugerList);
+            session.setAttribute("bruger", bruger);
+
+            String sessionId = session.getId();
             request.setAttribute("navn", navn);
-            request.setAttribute("session", session);
-
+            request.setAttribute("sessionId", sessionId);
             session.setAttribute("navn", navn);
-
             request.getRequestDispatcher("WEB-INF/Bruger.jsp").forward(request, response);
         }else{
-//            out.println("<html><body>");
-//            out.println("<h1>Dine passord er ikke ens</h1>");
-//            out.println("</body></html>");
-            String msg = "Dine passord er ikke ens";
+            String msg = "Dine passord er ikke ens, prøv igen";
             request.setAttribute("msg", msg);
             request.getRequestDispatcher("index.jsp").forward(request, response);
-
         }
     }
 

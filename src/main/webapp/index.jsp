@@ -9,33 +9,41 @@
 <h1><%= "Velkommen til online huskesedel" %>
 ${requestScope.msg}<br>
 </h1>
-<br/>
-<br>
-
-<h2>Her kan du oprette dig som bruger.</h2>
-<br>
-<br>
-<!--
-<form action="hello-servlet" method="get">
-    <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username"><br>
-    <label for="pwd">Password:</label><br>
-    <input type="password" id="pwd" name="pwd"><br>
-    <label for="pwd2">Password:</label><br>
-    <input type="password" id="pwd2" name="pwd2"><br>
-    <input type="submit" value="submit">
-</form>
--->
-<form id="form" action="hello-servlet" method="get">
-    <label for="name">Navn:</label><br>
-    <input type="text" id="name" name="name" value="John"><br><br>
-    <label for="pass1">password:</label><br>
-    <input type="text" id="pass1" name="pass1"><br><br>
-    <label for="pass2">gentag password:</label><br>
-    <input type="text" id="pass2" name="pass2"><br><br>
-    <input type="submit" value="opret">
-</form>
-
-<a href="hello-servlet">Hello Servlet</a>
+<div id="wrapper">
+    <section class="forms">
+        <section class="form1">
+            <h2>Her kan du oprette dig som bruger.</h2>
+            <form action="hello-servlet" method="post">
+                <label for="name">Navn:</label><br>
+                <input type="text" id="name" name="name" placeholder="John"><br><br>
+                <label for="pass1">password:</label><br>
+                <input type="password" id="pass1" name="pass1" placeholder="******"><br><br>
+                <label for="pass2">gentag password:</label><br>
+                <input type="password" id="pass2" name="pass2" placeholder="******"><br><br>
+                <input type="submit" value="opret" class="btn">
+            </form>
+        </section>
+        <section class="form2">
+            <h2>Her kan du log ind på din bruger.</h2>
+            <form action="Login" method="post">
+                <label for="name2">Navn:</label><br>
+                <input type="text" id="name2" name="name" placeholder="John"><br><br>
+                <label for="pass">password:</label><br>
+                <input type="password" id="pass" name="password" placeholder="******"><br><br>
+                <input type="submit" value="login" class="btn">
+            </form>
+        </section>
+    </section>
+<%---------------------------testing db-----------------------------------------------
+    <form action="DBServlet" method="get">
+        <label for="name2">Navn:</label><br>
+        <input type="text" id="name2" name="name" placeholder="John"><br><br>
+        <label for="pass">password:</label><br>
+        <input type="text" id="pass" name="pass1" placeholder="******"><br><br>
+        <input type="submit" value="opret" class="btn">
+    </form>
+--%>
+    <a class="helloServlet" href="hello-servlet">Hello Servlet</a>
+</div>
 </body>
 </html>

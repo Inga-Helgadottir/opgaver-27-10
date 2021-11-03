@@ -19,21 +19,28 @@ Du er nu logget ind som ${requestScope.navn} <br>--%>
 
 <h2>Her kan du tilføje emner til din huskeliste</h2><br>
 
+du har nu til ${sessionScope.emneListeSize} emner
+
 <form action="TilføjEmne" method="post">
     <label for="emne">Emne:</label><br>
-    <input type="text" id="emne" name="emne" value="Øl Bong !"><br>
+    <input type="text" id="emne" name="emne" placeholder="Øl Bong !"><br>
     <input type="submit" value="Tilføj emne">
 </form>
 
-<form action="VisOversigtServlet" method="get">
-    <input type="button">
-    <input type="submit" value="gå til oversigt">
+<form action="SletEmne" method="post">
+    <label for="sletEmne">slet emne:</label><br>
+    <input type="text" id="sletEmne" name="emne" placeholder="Øl Bong !"><br>
+    <input type="submit" value="Slet emne">
 </form>
 
 <c:forEach items="${sessionScope.emneListe}" var="emne">
     ${emne}
     <br>
 </c:forEach>
+
+<form action="VisOversigtServlet" method="get">
+    <input type="submit" value="gå til oversigt">
+</form>
 
 <h1>alle emner er tilføjet af brugere</h1>
 

@@ -12,8 +12,23 @@
     <title>Oversigt over alle emner</title>
 </head>
 <body>
+<!--
+Find out what is wrong here
+-->
+<h1>Here ${sessionScope.getFromDB}</h1>
+<h1>Here we are</h1>
+<%--
+<c:forEach items="${sessionScope.getFromDB}" var="emne">
+    <p>${emne} tilføjet af ${name}</p>
+<br>
+</c:forEach>--%>
 
-her kan du få oversigtet over alle emner
+<c:forEach var="type" items="${sessionScope.getFromDB}">
+   Key is ${type.name}
+   Value is ${type.emne}
+   <br>
+</c:forEach>
+
 
 </body>
 </html>
